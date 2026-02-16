@@ -929,4 +929,83 @@
     box-sizing: border-box !important;
     line-height: 1.2 !important;
   }
+
+  /* === STANDARD ISSUE PAGE MATCHING (RESTORED) === */
+  /* 1. Grid & Container Reset */
+  .toc-wrapper .sections .section .articles {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* 2. Article Card Style (Exact Match with Issue Page) */
+  .pkp_page_index .obj_article_summary {
+    width: auto !important;
+    margin: 0 15px 20px 15px !important; /* Match Issue Page spacing */
+    padding: 20px !important; /* Exact match issue.less */
+    background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%) !important;
+    border: 1px solid #e2e8f0 !important;
+    border-left: 5px solid #0d6efd !important; /* Standard Blue Strip */
+    border-radius: 12px !important; /* Standard Radius */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: auto !important;
+    transform: none !important;
+    position: relative !important;
+  }
+
+  /* 3. Typography (Exact Match) */
+  .pkp_page_index .obj_article_summary .title a {
+    font-family: "Merriweather", serif !important;
+    font-size: 1.15rem !important; /* Standard Size */
+    line-height: 1.5 !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+    margin-bottom: 10px !important;
+    display: block !important;
+  }
+
+  .pkp_page_index .obj_article_summary .authors {
+    font-family: "Inter", sans-serif !important;
+    font-size: 0.9rem !important;
+    color: #64748b !important;
+    margin-bottom: 15px !important;
+    font-weight: 500 !important;
+  }
+
+  /* 4. PDF Button */
+  .pkp_page_index .obj_article_summary .galleys_links {
+      margin-top: auto !important;
+  }
+
+  .pkp_page_index .obj_article_summary .galleys_links a.pdf {
+     padding: 6px 14px !important;
+     font-size: 0.8rem !important;
+     background: #eff6ff !important;
+     color: #0d6efd !important;
+     border: 1px solid #bfdbfe !important;
+     border-radius: 6px !important;
+     font-weight: 700 !important;
+  }
+
+  /* 5. Stabilize Homepage Containers */
+  .pkp_page_index .current_issue, 
+  .pkp_page_index .additional_content {
+      padding: 30px 0 !important;
+      background: #ffffff !important;
+      border-radius: 16px !important;
+      margin-top: 20px !important; /* Safety from Hero */
+      border: 1px solid rgba(13, 110, 253, 0.1) !important;
+  }
+  
+  .pkp_page_index .current_issue h2,
+  .pkp_page_index .card-header-custom,
+  .pkp_page_index .current_issue .description,
+  .pkp_page_index .current_issue .published {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+  }
 }

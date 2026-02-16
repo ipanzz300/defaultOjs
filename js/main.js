@@ -46,9 +46,34 @@
 	}
 
 	// Toggle nav menu on small screens
-	$('.pkp_site_nav_toggle').click(function(e) {
-  		$('.pkp_site_nav_menu').toggleClass('pkp_site_nav_menu--isOpen');
-  		$('.pkp_site_nav_toggle').toggleClass('pkp_site_nav_toggle--transform');
+	// Custom Mobile Navigation Logic
+	$(document).ready(function() {
+		// Toggle when button clicked
+		$(document).on('click', '.custom_nav_toggle', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			console.log('Custom Hamburger clicked!');
+			
+			var $menu = $('.custom_nav_menu');
+			var $btn = $(this);
+			
+			$menu.toggleClass('custom_nav_menu--isOpen'); // Toggle visibility class
+			$btn.toggleClass('custom_nav_toggle--active'); // Transform icon
+		});
+
+		// Close menu when clicking link inside
+		$(document).on('click', '.custom_nav_menu a', function() {
+			$('.custom_nav_menu').removeClass('custom_nav_menu--isOpen');
+			$('.custom_nav_toggle').removeClass('custom_nav_toggle--active');
+		});
+
+		// Close if clicking outside
+		$(document).on('click', function(e) {
+			if (!$(e.target).closest('.custom-main-navbar').length) {
+				$('.custom_nav_menu').removeClass('custom_nav_menu--isOpen');
+				$('.custom_nav_toggle').removeClass('custom_nav_toggle--active');
+			}
+		});
 	});
 
 	// Modify the Chart.js display options used by UsageStats plugin

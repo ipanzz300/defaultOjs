@@ -320,11 +320,17 @@ body .top-simple-bar .pkp_navigation_user > li > ul > li > a:hover {
 }
 
 /* === 5. NAVBAR MENU UTAMA === */
-.pkp_site_nav_menu {
+.custom_nav_toggle {
+  display: none !important;
+}
+
+.custom_nav_menu {
+  display: flex !important;
+  width: 100% !important;
+  justify-content: space-between !important;
+  align-items: center !important;
   background: transparent !important;
-  margin-top: 0 !important;
-  margin-left: 0 !important; /* Dihilangkan agar rata kiri container */
-  margin-right: 0 !important;
+  margin: 0 !important;
   border-bottom: none !important;
   padding-bottom: 0 !important;
   position: relative !important;
@@ -337,7 +343,7 @@ body .top-simple-bar .pkp_navigation_user > li > ul > li > a:hover {
   margin: 0 auto !important;
   padding: 0 20px !important;
   display: flex !important;
-  justify-content: space-between !important;
+  justify-content: flex-start !important;
   align-items: center !important;
 }
 

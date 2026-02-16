@@ -82,9 +82,6 @@
 
 		<div class="pkp_head_wrapper">
 			<div class="pkp_site_name_wrapper">
-				<button class="pkp_site_nav_toggle">
-					<span>{translate key="common.navigation.toggle"}</span>
-				</button>
 
 				<div class="pkp_site_name">
     {capture assign="homeUrl"}{url page="index" router=\PKP\core\PKPApplication::ROUTE_PAGE}{/capture}
@@ -135,17 +132,60 @@
 
 	<nav class="custom-main-navbar" aria-label="{translate|escape key="common.navigation.site"}">
 		<div class="pkp_navigation_primary_wrapper">
-			{load_menu name="primary" id="navigationPrimary" ulClass="pkp_navigation_primary"}
+			<button class="custom_nav_toggle" id="navToggleBtn">
+				<span>{translate key="common.navigation.toggle"}</span>
+			</button>
+			<div class="custom_nav_menu" id="navMenuContainer">
+				{load_menu name="primary" id="navigationPrimary" ulClass="pkp_navigation_primary"}
 
-			{if $currentContext && $requestedPage !== 'search'}
-				<div class="pkp_navigation_search_wrapper">
-					<a href="{url page="search"}" class="pkp_search pkp_search_desktop">
-						<span class="fa fa-search"></span> {translate key="common.search"}
-					</a>
-				</div>
-			{/if}
+				{if $currentContext && $requestedPage !== 'search'}
+					<div class="pkp_navigation_search_wrapper">
+						<a href="{url page="search"}" class="pkp_search pkp_search_desktop">
+							<span class="fa fa-search"></span> {translate key="common.search"}
+						</a>
+					</div>
+				{/if}
+			</div>
 		</div>
 	</nav>
+
+	{literal}
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var toggleBtn = document.getElementById('navToggleBtn');
+			var navMenu = document.getElementById('navMenuContainer');
+
+			if (toggleBtn && navMenu) {
+				toggleBtn.addEventListener('click', function(e) {
+					e.preventDefault();
+					e.stopPropagation();
+					
+					// Toggle Classes
+					navMenu.classList.toggle('custom_nav_menu--isOpen');
+					toggleBtn.classList.toggle('custom_nav_toggle--active');
+				});
+
+				// Close when clicking links
+				var links = navMenu.getElementsByTagName('a');
+				for (var i = 0; i < links.length; i++) {
+					links[i].addEventListener('click', function() {
+						navMenu.classList.remove('custom_nav_menu--isOpen');
+						toggleBtn.classList.remove('custom_nav_toggle--active');
+					});
+				}
+				
+				// Close when clicking outside
+				document.addEventListener('click', function(event) {
+					var isClickInside = toggleBtn.contains(event.target) || navMenu.contains(event.target);
+					if (!isClickInside && navMenu.classList.contains('custom_nav_menu--isOpen')) {
+						navMenu.classList.remove('custom_nav_menu--isOpen');
+						toggleBtn.classList.remove('custom_nav_toggle--active');
+					}
+				});
+			}
+		});
+	</script>
+	{/literal}
 
 	{if $isFullWidth}
 		{assign var=hasSidebar value=0}
