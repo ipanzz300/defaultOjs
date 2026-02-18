@@ -49,23 +49,26 @@
   .search_input {
     margin-bottom: 30px !important;
     padding-left: 0 !important;
+    width: 100% !important;
+    display: block !important;
 
     label {
       font-weight: 700 !important;
       margin-bottom: 10px !important;
       display: block !important;
-      color: #334155 !important;
+      color: #837474 !important;
       font-size: 0.95rem !important;
     }
 
     .query {
       width: 100% !important;
+      max-width: 100% !important; /* Override global 20em limit */
       height: 55px !important;
       padding: 12px 20px !important;
       font-size: 1.05rem !important;
       border: 2px solid #f1f5f9 !important;
       border-radius: 12px !important;
-      background: #f8fafc !important;
+      background: #d6d5d577 !important;
       transition: all 0.3s ease !important;
       color: #1e293b !important;
 
@@ -77,7 +80,7 @@
       }
 
       &::placeholder {
-        color: #94a3b8 !important;
+        color: #6e6e6e !important;
       }
     }
   }
@@ -87,6 +90,8 @@
     border-top: 1px solid #f1f5f9 !important;
     padding: 30px 0 0 0 !important;
     margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important; /* Stack vertical */
 
     legend {
       font-size: 1.1rem !important;
@@ -96,8 +101,59 @@
       margin-bottom: 25px !important;
       width: 100% !important;
       display: block !important;
-      border-bottom: 2px solid #f1f5f9 !important; /* Added subtle line for better separation */
+      border-bottom: 2px solid #f1f5f9 !important;
       padding-bottom: 10px !important;
+    }
+
+    /* REORDER: Author First, then Date Range */
+    .author {
+      order: 1 !important;
+      width: 100% !important;
+      margin-bottom: 30px !important;
+    }
+
+    .date_range {
+      order: 2 !important;
+      width: 100% !important;
+      margin-bottom: 20px !important;
+      border-right: none !important; /* Reset desktop style */
+      padding-right: 0 !important;
+
+      .from,
+      .to {
+        margin-bottom: 25px !important;
+        width: 100% !important;
+        display: block !important;
+        background: #f8fafc !important;
+        padding: 20px !important;
+        border-radius: 12px !important;
+        border: 1px solid #e2e8f0 !important;
+      }
+
+      legend {
+        font-size: 0.85rem !important;
+        font-weight: 700 !important;
+        color: #64748b !important;
+        margin-bottom: 15px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+        border-bottom: none !important; /* Reset legend border */
+        padding-bottom: 0 !important;
+      }
+
+      /* Make Selects Row (Day Month Year) */
+      select {
+        display: inline-block !important;
+        width: 32% !important; /* Fit 3 in a row */
+        margin-right: 1% !important;
+        min-width: 0 !important; /* Fix flex overflow */
+        height: 45px !important;
+        border-color: #cbd5e1 !important;
+        
+        &:last-child {
+          margin-right: 0 !important;
+        }
+      }
     }
 
     label {
@@ -111,47 +167,22 @@
     input[type="text"],
     select {
       width: 100% !important;
-      height: 48px !important;
-      padding: 10px 15px !important;
-      border: 1px solid #e2e8f0 !important;
-      border-radius: 10px !important;
-      background: #fff !important;
-      font-size: 0.95rem !important;
-      color: #334155 !important;
-      transition: all 0.2s !important;
+      height: 55px !important; /* Disamakan dengan .query */
+      padding: 12px 20px !important;
+      border: 2px solid #f1f5f9 !important;
+      border-radius: 12px !important;
+      background: #f8fafc !important; /* Disamakan dengan background .query */
+      font-size: 1.05rem !important;
+      color: #1e293b !important;
+      transition: all 0.3s ease !important;
+      max-width: 100% !important;
 
       &:focus {
         border-color: #0d6efd !important;
+        background: #fff !important;
+        box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1) !important;
         outline: none !important;
       }
-    }
-  }
-
-  .date_range {
-    margin-bottom: 20px !important;
-
-    .from,
-    .to {
-      margin-bottom: 15px !important;
-    }
-
-    select {
-      display: inline-block !important;
-      width: auto !important;
-      min-width: 90px !important;
-      margin-right: 5px !important;
-      height: 42px !important;
-      cursor: pointer !important;
-    }
-
-    legend {
-      font-size: 0.8rem !important;
-      font-weight: 700 !important;
-      color: #94a3b8 !important;
-      margin-bottom: 10px !important;
-      text-transform: uppercase !important;
-      letter-spacing: 1px !important;
-      display: block !important;
     }
   }
 
@@ -168,7 +199,7 @@
       align-items: center !important;
       gap: 10px !important;
       padding: 12px 35px !important;
-      background: linear-gradient(135deg, #0d6efd, #0056b3) !important;
+      background: linear-gradient(135deg,#0d6efd, #00a6ff,) !important;
       color: #fff !important;
       border: none !important;
       border-radius: 50px !important;

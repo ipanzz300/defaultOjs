@@ -365,6 +365,38 @@
     align-items: center !important;
   }
 
+  /* Styling View All Link untuk Alignment Panah yang Pas */
+  .view-all-link {
+    display: inline-flex !important;
+    align-items: center !important; /* Kunci alignment vertikal */
+    gap: 8px !important;
+    text-decoration: none !important;
+    font-family: "Inter", sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    color: #64748b !important;
+    letter-spacing: 0.5px !important;
+    transition: all 0.2s ease !important;
+    text-transform: uppercase !important;
+  }
+
+  .view-all-link .icon-chevron {
+    width: 18px !important;
+    height: 18px !important;
+    stroke-width: 3px !important;
+    margin-top: -1px !important; /* Micro adjustment untuk visual center */
+    transition: transform 0.2s ease !important;
+  }
+
+  .view-all-link:hover {
+    color: #0d6efd !important;
+  }
+
+  .view-all-link:hover .icon-chevron {
+    transform: translateX(4px) !important;
+    stroke: #0d6efd !important;
+  }
+
   a.learn-more {
     position: relative !important;
     display: inline-block !important;

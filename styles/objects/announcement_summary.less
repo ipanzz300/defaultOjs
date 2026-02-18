@@ -72,41 +72,44 @@
         }
     }
 
-    /* Simple Read More Link like Homepage */
+    /* Read More Link Matching View All Issues Style */
     .read_more {
         display: inline-flex !important;
         align-items: center !important;
         background: transparent !important;
-        color: #72a0b5 !important; /* Muted blue matching homepage style */
+        color: #64748b !important; /* Match View All Link Color */
         padding: 0 !important;
-        font-size: 13px !important;
+        font-family: "Inter", sans-serif !important;
+        font-size: 0.85rem !important; /* Match View All Link Size */
         font-weight: 700 !important;
         text-transform: uppercase !important;
-        letter-spacing: 1.2px !important;
+        letter-spacing: 0.5px !important;
         text-decoration: none !important;
         border: none !important;
         box-shadow: none !important;
-        transition: all 0.2s ease-in-out !important;
+        transition: all 0.2s ease !important;
         margin-top: 15px !important;
+        gap: 8px !important; /* Gap standard */
 
         &:after {
             display: inline-block !important;
             .fa();
             content: @fa-var-chevron-right !important;
-            margin-left: 8px !important;
+            margin-left: 0 !important; /* Remove old margin, use gap */
             font-size: 14px !important;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+            transition: transform 0.2s ease !important;
         }
 
         &:hover {
             background: transparent !important;
-            color: #72a0b5 !important;
-            opacity: 0.8 !important;
+            color: #0d6efd !important; /* Blue on hover */
+            opacity: 1 !important;
             transform: none !important;
             box-shadow: none !important;
 
             &:after {
-                transform: translateX(6px) !important;
+                transform: translateX(4px) !important;
+                color: #0d6efd !important;
             }
         }
     }
