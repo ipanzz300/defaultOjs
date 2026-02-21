@@ -88,25 +88,32 @@
     
     <div class="branding-wrapper">
         
-        {* === [FIX] BAGIAN INISIAL OTOMATIS === *}
-        <div class="journal-icon-box">
-            {if $currentContext}
-                {* Ambil Variable Nama dan Akronim *}
-                {assign var="journalName" value=$currentContext->getLocalizedName()}
-                {assign var="journalAcronym" value=$currentContext->getLocalizedAcronym()}
-                
-                {* LOGIKA: Prioritas Akronim -> Jika kosong, ambil huruf depan *}
-                {if $journalAcronym}
-                    {$journalAcronym|escape}
+        {if $displayPageHeaderLogo}
+            <div class="journal-logo-wrapper">
+                <a href="{$homeUrl}" class="is_img">
+                    <img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
+                </a>
+            </div>
+        {else}
+            <div class="journal-icon-box">
+                {if $currentContext}
+                    {* Ambil Variable Nama dan Akronim *}
+                    {assign var="journalName" value=$currentContext->getLocalizedName()}
+                    {assign var="journalAcronym" value=$currentContext->getLocalizedAcronym()}
+                    
+                    {* LOGIKA: Prioritas Akronim -> Jika kosong, ambil huruf depan *}
+                    {if $journalAcronym}
+                        {$journalAcronym|escape}
+                    {else}
+                        {* Fallback: Ambil Huruf Pertama dari Kata Pertama & Kedua (Misal: Jurnal Teknologi -> JT) *}
+                        {$journalName|regex_replace:"/(\b\w)\w+\s?/":"$1"|replace:" ":""|truncate:2:""|upper|escape}
+                    {/if}
                 {else}
-                    {* Fallback: Ambil Huruf Pertama dari Kata Pertama & Kedua (Misal: Jurnal Teknologi -> JT) *}
-                    {$journalName|regex_replace:"/(\b\w)\w+\s?/":"$1"|replace:" ":""|truncate:2:""|upper|escape}
+                    {* Default jika bukan halaman jurnal *}
+                    OJS
                 {/if}
-            {else}
-                {* Default jika bukan halaman jurnal *}
-                OJS
-            {/if}
-        </div>
+            </div>
+        {/if}
 
         <div class="journal-details">
             {if $displayPageHeaderTitle}
